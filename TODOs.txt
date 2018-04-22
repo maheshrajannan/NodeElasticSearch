@@ -1,0 +1,36 @@
+TODOs.txt
+
+Please do the following in the order of preference.
+
+1. One demo of the installable web app.
+
+2. Test the node elastic code thoroughly.
+
+	Produce a SEQUENCE diagram of how you understand it works.
+	https://en.wikipedia.org/wiki/Sequence_diagram
+
+3. Reproduce the error you had on “Writeable access Exception” and include screenshots.
+
+4. Reproduce the error when you used newer version of elastic.
+
+5. Explain the logic of searches.
+
+	a. Is it searching against all fields ? 
+	b. when you type John, what fields in elastic search(db) does it search against ?
+
+5. Add a new field called gender.
+	It can take 2 values, male or female.let the default be male.
+	Add the field in the elastic.
+	Modify the EXISTING CODE to also populate this field.
+	Fetch the field along with other fields.
+	Display the field in the UI.
+
+6. How to add authentication to Elastic. Study and produce a design document.
+
+7. Add authentication to Elastic.
+
+8.  Design NOT implementation, for NodeElastic repo
+	
+	Hint: Refer the ReactToDo App and understand how it is broken in to service and UI and how each js file is written.ITs also time to recall the class based 
+
+9. Present a design plan step by step.

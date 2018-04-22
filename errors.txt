@@ -1,0 +1,47 @@
+errors.txt
+
+TODO-Vignesh: Cleanup and include screenshots
+
+[2018-04-22T09:02:42,255][WARN ][o.e.g.MetaStateService   ] [DESKTOP-1PSEKEG] [[customer/BAgTniSUTzmxm104A861Og]]: failed to write index state
+java.nio.file.AccessDeniedException: C:\ProgramData\Elastic\Elasticsearch\data\nodes\0\indices\BAgTniSUTzmxm104A861Og\_state\state-3.st
+        at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:83) [?:?]
+        at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:97) [?:?]
+        at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:102) [?:?]
+        at sun.nio.fs.WindowsFileSystemProvider.implDelete(WindowsFileSystemProvider.java:269) [?:?]
+        at sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:108) [?:?]
+        at java.nio.file.Files.deleteIfExists(Files.java:1165) [?:1.8.0_161]
+        at org.elasticsearch.gateway.MetaDataStateFormat.cleanupOldFiles(MetaDataStateFormat.java:230) ~[elasticsearch-6.2.4.jar:6.2.4]
+
+
+The elastic search is not started with "Run As Administrator"        
+
+------------------------------------
+
+Trace: [illegal_argument_exception] query malformed, empty clause found at [1:176]
+    at C:\Users\mahesh\Desktop\NodeElasticSearch-master\app.js:254:17
+    at <anonymous>
+    at process.tickCallback (internal/process/next_tick.js:188:7)
+GET /search?q=Hohn 500 86.346 ms - -
+TypeError: C:\Users\mahesh\Desktop\NodeElasticSearch-master\views\search.jade:14
+    12|                 hr
+    13|
+  > 14|             if response.hits.total > 0
+    15|
+    16|                 dl
+    17|                     dt Countries
+
+Cannot read property 'total' of undefined
+    at eval (eval at exports.compile (C:\Users\mahesh\Desktop\NodeElasticSearch-master\node_modules\jade\lib\index.js:218:8), <anonymous>:162:20)
+    at eval (eval at exports.compile (C:\Users\mahesh\Desktop\NodeElasticSearch-master\node_modules\jade\lib\index.js:218:8), <anonymous>:779:22)
+    at res (C:\Users\mahesh\Desktop\NodeElasticSearch-master\node_modules\jade\lib\index.js:219:38)
+    at Object.exports.renderFile (C:\Users\mahesh\Desktop\NodeElasticSearch-master\node_modules\jade\lib\index.js:380:38)
+
+This is because of using newer version of elastic, that what the code is compatible for.
+
+-----------------------
+
+The gender field is removed because i faced one error indicating gender field cannot be searched on.
+
+Add gender field back.    
+
+----------------
