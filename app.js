@@ -249,6 +249,7 @@ app.get('/search', function (req, res) {
             }
         }
     }).then(function (resp) {
+        console.log(resp);
         res.render('search', {response: resp, query: req.query.q});
     }, function (err) {
         console.trace(err.message);
