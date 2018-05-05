@@ -148,6 +148,9 @@ app.get('/index', function (req, res) {
 
 app.get('/autocomplete', function (req, res) {
     console.log("Searching..");
+    //INFO: made it some what work.now it searches against the first name field and shows up.
+    //TODO#1: make it also search against lastname
+    //TODO#2: After that understand how the autocomplete search works and fix it nicely. 
     client.search({
         index: _index,
         type: _type,
@@ -157,14 +160,15 @@ app.get('/autocomplete', function (req, res) {
                     "must": {
                         "multi_match": {
                             "query": req.query.term,
-                            "fields": ["first_name.autocomplete"]
+                            "fields": ["first_name"]
                         }
                     }
                 }
-
             }
         }
     }).then(function (resp) {
+        console.log("response received for autocomplete");
+        console.log(resp);
 
         var results = resp.hits.hits.map(function(hit){
             return hit._source.first_name + " " + hit._source.last_name;

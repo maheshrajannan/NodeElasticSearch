@@ -44,4 +44,6 @@ The gender field is removed because i faced one error indicating gender field ca
 
 Add gender field back.    
 
+https://www.elastic.co/guide/en/elasticsearch/reference/current/fielddata.html
+
 ----------------
