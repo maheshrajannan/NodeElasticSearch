@@ -107,6 +107,12 @@ app.get('/index', function (req, res) {
                         "last_name": {
                             "type": "string"
                         },
+                        "gender": {
+                            "type": "string",
+                            "fields": {
+                                "raw": {"type": "string", "index": "not_analyzed"}
+                            }
+                        },
                         "job_title": {
                             "type": "string",
                             "fields": {
@@ -198,7 +204,7 @@ app.get('/search', function (req, res) {
                     "must": {
                         "multi_match": {
                             "query": req.query.q,
-                            "fields": ["first_name^100", "last_name^20", "country^5", "city^3", "language^10", "job_title^50"],
+                            "fields": ["first_name^100", "last_name^20", "gender^5", "country^5", "city^3", "language^10", "job_title^50"],
                             "fuzziness": 1
                         }
                     },
@@ -209,6 +215,11 @@ app.get('/search', function (req, res) {
 
             },
             "aggs": {
+                "gender": {
+                    "terms": {
+                        "field": "gender.raw"
+                    }
+                },
                 "country": {
                     "terms": {
                         "field": "country.raw"
