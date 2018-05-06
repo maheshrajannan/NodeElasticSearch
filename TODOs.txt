@@ -26,6 +26,9 @@ Please do the following in the order of preference.
 	Fetch the field along with other fields.
 	Display the field in the UI.
 
+7. Add tasks to Trello.
+
+
 7. How to add authentication to Elastic. Study and produce a design document.
 
 8. Add authentication to Elastic.
@@ -36,7 +39,15 @@ Please do the following in the order of preference.
 
 10. Present a design plan step by step.
 
+11. Automated testing of this app.
+--------
 11. Make the Aggregations work.
 
 Countries(3) like that on the search results page.
 
+12. Fix the warnings.
+
+Maheshs-MBP-2:NodeElasticSearch maheshrajannan$ npm install
+npm WARN deprecated jade@1.11.0: Jade has been renamed to pug, please install the latest version of pug instead of jade
+npm WARN deprecated constantinople@3.0.2: Please update to at least constantinople 3.1.1
+npm WARN deprecated transformers@2.1.0: Deprecated, use jstransformer
