@@ -19,24 +19,24 @@ Please do the following in the order of preference.
 	a. Is it searching against all fields ? 
 	b. when you type John, what fields in elastic search(db) does it search against ?
 
-5. Add a new field called gender.
+6. Add a new field called gender.
 	It can take 2 values, male or female.let the default be male.
 	Add the field in the elastic.
 	Modify the EXISTING CODE to also populate this field.
 	Fetch the field along with other fields.
 	Display the field in the UI.
 
-6. How to add authentication to Elastic. Study and produce a design document.
+7. How to add authentication to Elastic. Study and produce a design document.
 
-7. Add authentication to Elastic.
+8. Add authentication to Elastic.
 
-8.  Design NOT implementation, for NodeElastic repo
+9.  Design NOT implementation, for NodeElastic repo
 	
 	Hint: Refer the ReactToDo App and understand how it is broken in to service and UI and how each js file is written.ITs also time to recall the class based 
 
-9. Present a design plan step by step.
+10. Present a design plan step by step.
 
-10. Make the Aggregations work.
+11. Make the Aggregations work.
 
 Countries(3) like that on the search results page.
 
