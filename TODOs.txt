@@ -8,6 +8,7 @@ Please do the following in the order of preference.
 
 	Produce a SEQUENCE diagram of how you understand it works.
 	https://en.wikipedia.org/wiki/Sequence_diagram
+	https://www.youtube.com/watch?v=18_kVlQMavE
 
 3. Reproduce the error you had on “Writeable access Exception” and include screenshots.
 
@@ -38,3 +39,4 @@ Please do the following in the order of preference.
 10. Make the Aggregations work.
 
 Countries(3) like that on the search results page.
+
