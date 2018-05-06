@@ -59,6 +59,7 @@ app.get('/index', function (req, res) {
 
     client.indices.delete({index: _index});
 
+    //INFO: https://www.elastic.co/guide/en/elasticsearch/guide/current/_index_time_search_as_you_type.html
     client.indices.create({
         index: _index,
         body: {
@@ -101,7 +102,11 @@ app.get('/index', function (req, res) {
                         "first_name": {
                             "type": "string",
                             "fields": {
-                                "autocomplete": {"type": "string", "index_analyzer": "autocomplete"}
+                                "autocomplete": 
+                                {
+                                    "type": "string", 
+                                    "index_analyzer": "autocomplete"
+                                }
                             }
                         },
                         "last_name": {
@@ -148,9 +153,48 @@ app.get('/index', function (req, res) {
 
 app.get('/autocomplete', function (req, res) {
     console.log("Searching..");
-    //INFO: made it some what work.now it searches against the first name field and shows up.
-    //TODO#1: make it also search against lastname
-    //TODO#2: After that understand how the autocomplete search works and fix it nicely. 
+    /**INFO: made it work.now it searches against the first name field and shows up.
+    TODO#1: make it also search against lastname
+    TODO#2: After that understand how the autocomplete search works. 
+    INFO:
+    GET /my_index/my_type/_validate/query?explain
+        {
+            "query": {
+                "match": {
+                    "name": "brown fo"
+                }
+            }
+        }
+    https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
+    https://www.elastic.co/guide/en/elasticsearch/reference/current/search-validate.html    
+    **/
+    client.indices.validateQuery({
+        index: _index,
+        type: _type,
+        rewrite: true,
+        explain: true,
+        body: {
+            "query": {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": req.query.term,
+                            "fields": ["first_name"]
+                        }
+                    }
+                }
+            }
+        }
+    }).then(function (resp) {
+        console.log("query validated for autocomplete");
+        //console.log(resp);
+        //var str = JSON.stringify(resp, null, 2);
+        console.log(JSON.stringify(resp, null, 2));
+
+    }, function (err) {
+        console.trace(err.message);
+    });    
+
     client.search({
         index: _index,
         type: _type,
