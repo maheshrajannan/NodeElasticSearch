@@ -199,7 +199,59 @@ app.get('/autocomplete', function (req, res) {
 
     }, function (err) {
         console.trace(err.message);
-    });    
+    });  
+
+    client.indices.validateQuery({
+        index: _index,
+        type: _type,
+        rewrite: true,
+        explain: true,
+        body: {
+            "query": {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": req.query.term,
+                            "fields": ["first_name"]
+                        }
+                    }
+                }
+            }
+        }
+    }).then(function (resp) {
+        console.log("query validated for autocomplete");
+        //console.log(resp);
+        //var str = JSON.stringify(resp, null, 2);
+        console.log(JSON.stringify(resp, null, 2));
+
+    }, function (err) {
+        console.trace(err.message);
+    });          
+
+    /**
+    https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
+    **/
+    client.explain({
+        index: _index,
+        type: _type,
+        body: {
+            "query": {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": req.query.term,
+                            "fields": ["first_name"]
+                        }
+                    }
+                }
+            }
+        }
+    }).then(function (resp) {
+        console.log("Explanation received for autocomplete");
+        console.log(JSON.stringify(resp, null, 2));
+    }, function (err) {
+        console.trace(err.message);
+    });
 
     client.search({
         index: _index,
